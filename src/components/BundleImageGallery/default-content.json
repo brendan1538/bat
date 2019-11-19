@@ -1,0 +1,28 @@
+{
+  "bundles": [
+    {
+      "name": "Domaincom CR",
+      "bundle": "domaincom_main_local",
+      "image": "https://education.eviq.org.au/App_Themes/eviQEdu/images/assets/placeholder_200x200.gif",
+      "primary": true
+    },
+    {
+      "name": "MyDomain CR",
+      "bundle": "mydomain_main_local",
+      "image": "https://education.eviq.org.au/App_Themes/eviQEdu/images/assets/placeholder_200x200.gif",
+      "primary": false
+    },
+    {
+      "name": "Netfirms CR",
+      "bundle": "netfirms_main_local",
+      "image": "https://education.eviq.org.au/App_Themes/eviQEdu/images/assets/placeholder_200x200.gif",
+      "primary": false
+    },
+    {
+      "name": "Coldstone CR",
+      "bundle": "coldstone_main_local",
+      "image": "https://education.eviq.org.au/App_Themes/eviQEdu/images/assets/placeholder_200x200.gif",
+      "primary": false
+    }
+  ]
+}
