@@ -1,40 +1,55 @@
-const { exec } = require('child_process');
+const { exec, execSync } = require('child_process');
+const path = require('path');
 const express = require('express');
 const axios = require('axios');
 
 const app = express();
 
+const PORT = process.env.PORT || 1538;
+
 const bundles = {
-  netfirmsDev: [
-    'open http://127.0.0.1:10045/',
-    'open https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests',
-    'echo Opened all Netfirms dev links'
-  ],
-  mydomainDev: [
-    'open http://127.0.0.1:10048/',
-    'open https://stash.endurance.com/projects/SAM/repos/mainsite-mydomain/pull-requests',
-    'echo Opened all MyDomain dev links'
-  ]
+  netfirms: {
+    directory: "/Users/blaughlin/capvm/coldstone",
+    actions: [
+      "docker-compose up netfirms",
+      'open http://127.0.0.1:10045/',
+      'open https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests'
+    ],
+  },
+  mydomain: {
+    directory: "/Users/blaughlin/capvm/coldstone",
+    actions: [
+      { async: true, action: "docker-compose up mydomain" },
+      { async: true, action: 'open http://127.0.0.1:10048/' },
+      { async: true, action: 'open https://stash.endurance.com/projects/SAM/repos/mainsite-mydomain/pull-requests' }
+    ],
+  },
 }
 
 function runProcess(bundle) {
-  exec(`echo Running ${bundle} bundle`);
-  const bundleNames = Object.keys(bundles)
-  bundleNames.forEach((bundleName, index) => bundleName === bundle && (
-    console.log(bundleName)
-  ));
-
-  // exec("ls", { cwd: '' }, (err, stdout, stderr) => {
-  //   if (err) {
-  //     console.error(`exec ${err}`);
-  //     return;
-  //   }
-  //   console.log(`stdout: ${stdout}`);
-  //   console.log(`stderr: ${stderr}`);
-  // })
+  const workingDir = path.resolve(process.cwd(), bundles[bundle].directory)
+  console.log(`Running ${bundle} bundle`);
+  bundles[bundle].actions.forEach((command, index) => {
+    if (command.async) {
+      execSync(command.action, { cwd: workingDir }, (err, stdout, stderr) => {
+        console.log(`Running action ${index} ...`)
+        if (err) {
+          console.error(err)
+          return;
+        }
+        console.log(stdout);
+      });
+    } else {
+      exec(command.action, { cwd: workingDir }, (err, stdout, stderr) => {
+        if (err) {
+          console.error(err)
+          return;
+        }
+        console.log(stdout);
+      });
+    }
+  });
 }
-
-const PORT = process.env.PORT || 1538;
 
 app.get('/functions/', (req, res) => {
   runProcess(req.query.bundle);
