@@ -3,25 +3,25 @@
     {
       "name": "Domaincom CR",
       "bundle": "domaincom_main_local",
-      "image": "/domain.png",
+      "image": "https://education.eviq.org.au/App_Themes/eviQEdu/images/assets/placeholder_200x200.gif",
       "primary": true
     },
     {
       "name": "MyDomain CR",
       "bundle": "mydomain_main_local",
-      "image": "/mydomain.png",
+      "image": "https://education.eviq.org.au/App_Themes/eviQEdu/images/assets/placeholder_200x200.gif",
       "primary": false
     },
     {
       "name": "Netfirms CR",
       "bundle": "netfirms_main_local",
-      "image": "/netfirms.png",
+      "image": "https://education.eviq.org.au/App_Themes/eviQEdu/images/assets/placeholder_200x200.gif",
       "primary": false
     },
     {
       "name": "Coldstone CR",
       "bundle": "coldstone_main_local",
-      "image": "/coldstone.jpg",
+      "image": "https://education.eviq.org.au/App_Themes/eviQEdu/images/assets/placeholder_200x200.gif",
       "primary": false
     }
   ]
