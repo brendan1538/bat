@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Card, Icon, Image, Popup, Button, Container } from "semantic-ui-react";
 
 const runProcess = bundle => {
   axios
-    .get(`localhost:1538/functions/?bundle=${bundle}`)
+    .get(`http://localhost:1538/runBundle/?bundle=${bundle}`)
     .then(res => console.log(res))
     .catch(err => console.error(err));
 };
 
 const BundleGalleryItem = ({ content }) => {
-  const { image, name } = content;
+  const { image, name, bundle } = content;
 
   return (
     <Card>
-      <Image src={image} wrapped ui={false} />
+      <Image
+        src={image}
+        wrapped
+        ui={false}
+        style={{ cursor: 'pointer', }}
+        onClick={() => runProcess(bundle)}
+      />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
         <Card.Description>Description</Card.Description>
@@ -25,7 +31,7 @@ const BundleGalleryItem = ({ content }) => {
           content={
             <>
               <Button color="green" content="Test" />
-              <div class="ui input">
+              <div className="ui input">
                 <input type="text" placeholder="Update Name..." />
               </div>
             </>

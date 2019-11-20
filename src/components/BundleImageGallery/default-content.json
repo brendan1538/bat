@@ -2,25 +2,25 @@
   "bundles": [
     {
       "name": "Domaincom CR",
-      "bundle": "domaincom_main_local",
+      "bundle": "domaincom",
       "image": "/domain.png",
       "primary": true
     },
     {
       "name": "MyDomain CR",
-      "bundle": "mydomain_main_local",
+      "bundle": "mydomain",
       "image": "/mydomain.png",
       "primary": false
     },
     {
       "name": "Netfirms CR",
-      "bundle": "netfirms_main_local",
+      "bundle": "netfirms",
       "image": "/netfirms.png",
       "primary": false
     },
     {
       "name": "Coldstone CR",
-      "bundle": "coldstone_main_local",
+      "bundle": "coldstone",
       "image": "/coldstone.jpg",
       "primary": false
     }

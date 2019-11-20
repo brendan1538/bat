@@ -47,7 +47,7 @@ function runProcess(bundle) {
   });
 }
 
-app.get('/functions/', (req, res) => {
+app.get('/runBundle/', (req, res) => {
   runProcess(req.query.bundle);
   res.status(200).send('completed');
 });
