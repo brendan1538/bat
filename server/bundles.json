@@ -3,9 +3,9 @@
     "image": "",
     "description": "",
     "actions": [
-      { "command": "docker", "args": "netfirms", "directory": "/Users/__USER__/capvm/coldstone" },
-      { "command": "open", "args": "http://127.0.0.1:10045/", "directory": "/Users/__USER__/capvm/coldstone" },
-      { "command": "open", "args": "https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests", "directory": "/Users/__USER__/capvm/coldstone" }
+      { "name": "Spin up Netfirms docker container", "command": "docker", "args": "netfirms", "directory": "/Users/__USER__/capvm/coldstone" },
+      { "name": "Open Netfirms homepage", "command": "open", "args": "http://127.0.0.1:10045/", "directory": "/Users/__USER__/capvm/coldstone" },
+      { "name": "Open mainsite-netfirms Bitbucket PR's", "command": "open", "args": "https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests", "directory": "/Users/__USER__/capvm/coldstone" }
     ]
   },
   "mydomain": {
@@ -13,8 +13,7 @@
     "description": "",
     "actions": [
       { "command": "git", "args": "master", "directory": "/Users/__USER__/capvm/coldstone/brands/mydomain/coldstone" },
-      { "command": "open", "args": "http://127.0.0.1:10048/", "directory": "/Users/__USER__/capvm/coldstone" },
-      { "command": "open", "args": "https://stash.endurance.com/projects/SAM/repos/mainsite-mydomain/pull-requests", "directory": "/Users/__USER__/capvm/coldstone" }
+      { "name": "Open mainsite-netfirms Bitbucket PR's", "command": "open", "args": "https://stash.endurance.com/projects/SAM/repos/mainsite-mydomain/pull-requests", "directory": "/Users/__USER__/capvm/coldstone" }
     ]
   }
 }
