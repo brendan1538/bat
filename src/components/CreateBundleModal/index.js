@@ -41,6 +41,7 @@ class CreateBundleModal extends Component {
     this.setState({ actions });
   }
 
+  // If we update the type of the action we should give them a default command
   updateActionType(event) {
     const target = event.target;
     const value = target.value;
@@ -70,7 +71,7 @@ class CreateBundleModal extends Component {
       this.setState({ [name]: target.value });
     }
 
-    if (target.id.includes("type")) {
+    if (target.id.includes("Type")) {
       this.updateActionType(event);
     }
   }
