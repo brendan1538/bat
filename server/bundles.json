@@ -1,0 +1,20 @@
+{
+  "netfirms": {
+    "image": "",
+    "description": "",
+    "actions": [
+      { "command": "docker-compose up -d netfirms", "directory": "/Users/__USER__/capvm/coldstone" },
+      { "command": "open http://127.0.0.1:10045/", "directory": "/Users/__USER__/capvm/coldstone" },
+      { "command": "open https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests", "directory": "/Users/__USER__/capvm/coldstone" }
+    ]
+  },
+  "mydomain": {
+    "image": "",
+    "description": "",
+    "actions": [
+      { "command": "docker-compose up -d mydomain", "directory": "/Users/__USER__/capvm/coldstone" },
+      { "command": "open http://127.0.0.1:10048/", "directory": "/Users/__USER__/capvm/coldstone" },
+      { "command": "open https://stash.endurance.com/projects/SAM/repos/mainsite-mydomain/pull-requests", "directory": "/Users/__USER__/capvm/coldstone" }
+    ]
+  }
+}
