@@ -1,25 +1,25 @@
 {
   "bundles": [
     {
-      "name": "Domaincom CR",
+      "name": "Domaincom Bundle",
       "bundle": "domaincom",
       "image": "/domain.png",
       "primary": true
     },
     {
-      "name": "MyDomain CR",
+      "name": "MyDomain Bundle",
       "bundle": "mydomain",
       "image": "/mydomain.png",
       "primary": false
     },
     {
-      "name": "Netfirms CR",
+      "name": "Netfirms Bundle",
       "bundle": "netfirms",
       "image": "/netfirms.png",
       "primary": false
     },
     {
-      "name": "Coldstone CR",
+      "name": "Coldstone Bundle",
       "bundle": "coldstone",
       "image": "/coldstone.jpg",
       "primary": false
