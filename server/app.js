@@ -12,9 +12,9 @@ const bundles = {
   netfirms: {
     directory: "/Users/__USER__/capvm/coldstone",
     actions: [
-      { command: 'docker-compose', args: ['up', 'netfirms'], directory: '/Users/__USER__/capvm/coldstone', async: false },
-      { command: 'open', args: ['http://127.0.0.1:10045/'], directory: '', async: true },
-      { command: 'open', args: ['https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests'], directory: '', async: true }
+      { command: 'docker-compose up netfirms', directory: '/Users/__USER__/capvm/coldstone', async: false },
+      { command: 'open http://127.0.0.1:10045/', directory: '/Users/__USER__/capvm/coldstone', async: true },
+      { command: 'open https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests', directory: '/Users/__USER__/capvm/coldstone', async: true }
     ],
   },
   mydomain: {
