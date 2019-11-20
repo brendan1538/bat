@@ -1,5 +1,6 @@
-const { exec, execSync } = require('child_process');
+const { execSync } = require('child_process');
 const path = require('path');
+const user = require('os').userInfo().username;
 const express = require('express');
 const axios = require('axios');
 
@@ -9,45 +10,40 @@ const PORT = process.env.PORT || 1538;
 
 const bundles = {
   netfirms: {
-    directory: "/Users/blaughlin/capvm/coldstone",
+    directory: "/Users/__USER__/capvm/coldstone",
     actions: [
-      "docker-compose up netfirms",
-      'open http://127.0.0.1:10045/',
-      'open https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests'
+      { command: 'docker-compose', args: ['up', 'netfirms'], directory: '/Users/__USER__/capvm/coldstone', async: false },
+      { command: 'open', args: ['http://127.0.0.1:10045/'], directory: '', async: true },
+      { command: 'open', args: ['https://stash.endurance.com/projects/SAM/repos/mainsite-netfirms/pull-requests'], directory: '', async: true }
     ],
   },
   mydomain: {
-    directory: "/Users/blaughlin/capvm/coldstone",
     actions: [
-      { async: true, action: "docker-compose up mydomain" },
-      { async: true, action: 'open http://127.0.0.1:10048/' },
-      { async: true, action: 'open https://stash.endurance.com/projects/SAM/repos/mainsite-mydomain/pull-requests' }
+      { command: 'docker-compose up mydomain', directory: '/Users/__USER__/capvm/coldstone', async: false },
+      { command: 'open http://127.0.0.1:10048/', directory: '/Users/__USER__/capvm/coldstone', async: true },
+      { command: 'open https://stash.endurance.com/projects/SAM/repos/mainsite-mydomain/pull-requests', directory: '/Users/__USER__/capvm/coldstone', async: true }
     ],
   },
 }
 
 function runProcess(bundle) {
-  const workingDir = path.resolve(process.cwd(), bundles[bundle].directory)
-  console.log(`Running ${bundle} bundle`);
-  bundles[bundle].actions.forEach((command, index) => {
-    if (command.async) {
-      execSync(command.action, { cwd: workingDir }, (err, stdout, stderr) => {
-        console.log(`Running action ${index} ...`)
-        if (err) {
-          console.error(err)
-          return;
-        }
-        console.log(stdout);
-      });
-    } else {
-      exec(command.action, { cwd: workingDir }, (err, stdout, stderr) => {
-        if (err) {
-          console.error(err)
-          return;
-        }
-        console.log(stdout);
-      });
-    }
+  console.log(`*** Running ${bundle} bundle ***\n`);
+  bundles[bundle].actions.forEach((action, index) => {
+    console.log(`Executing action ${index+1} of ${bundles[bundle].actions.length}...`);
+    
+    const workingDir = path.resolve(process.cwd(), action.directory.replace(/__USER__/, user)) || path.resolve(process.cwd());
+    execSync(
+        action.command,
+        {
+          cwd: workingDir,
+          stdio: ['pipe', process.stdout, process.stderr],
+        },
+        (err) => {
+          err && console.log(err)
+          console.log('stdout: ', stdout);
+          console.error('stderr: ', stderr);
+          // TODO: escape synchronous execution when docker outputs '> Ready on http://127.0.0.1:{PORT}'
+        });
   });
 }
 
