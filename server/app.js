@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
 const { runProcess } = require('./runProcess');
+const { mongodbCRUD } = require('./db_crud');
 
 const app = express();
 const PORT = process.env.PORT || 1538;
@@ -24,6 +25,6 @@ app.get('/runBundle', cors(), (req, res) => {
 });
 
 app.post('/createBundle', cors(), (req, res) => {
-  bundles = { ...bundles, ...req.body };
-  res.send(bundles);
+  mongodbCRUD(req.body, "create");
+  res.send({ status: "SUCCESS" });
 });
