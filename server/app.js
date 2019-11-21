@@ -27,7 +27,6 @@ app.get('/runBundle', cors(), (req, res) => {
 
 app.get('/getBundles', cors(), async function(req, res) {
   mongodbCRUD({}, 'read', function(bundles) {
-    console.log(bundles);
     res.status(200).send(bundles);
   });
 });
