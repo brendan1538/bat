@@ -1,6 +1,14 @@
 import React from "react";
 import axios from "axios";
-import { Card, Icon, Image, Popup, Button } from "semantic-ui-react";
+import {
+  Card,
+  Icon,
+  Image,
+  Popup,
+  Button,
+  Form,
+  Header
+} from "semantic-ui-react";
 
 const runProcess = bundle => {
   axios
@@ -23,7 +31,12 @@ const BundleGalleryItem = ({ content }) => {
       />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
-        <Card.Description>Description</Card.Description>
+        <Card.Description>
+          Description
+          <p>
+            <a>Share Bundle</a>
+          </p>
+        </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
@@ -34,12 +47,40 @@ const BundleGalleryItem = ({ content }) => {
               </Button>
             }
             content={
-              <>
-                <Button color="green" content="Test" />
-                <div className="ui input">
-                  <input type="text" placeholder="Update Name..." />
-                </div>
-              </>
+              <Form>
+                <Header>Update Bundle</Header>
+                <Form.Field>
+                  <div className="ui input">
+                    <input type="text" placeholder="Name..." />
+                  </div>
+                </Form.Field>
+                <Form.Field>
+                  <div className="ui input">
+                    <input type="text" placeholder="Description..." />
+                  </div>
+                </Form.Field>
+                <Form.Field>
+                  <div className="ui input">
+                    <input type="text" placeholder="Type..." />
+                  </div>
+                </Form.Field>
+                <Form.Field>
+                  <div className="ui input">
+                    <input type="text" placeholder="Command..." />
+                  </div>
+                </Form.Field>
+                <Form.Field>
+                  <div className="ui input">
+                    <input type="text" placeholder="Args..." />
+                  </div>
+                </Form.Field>
+                <Form.Field>
+                  <div className="ui input">
+                    <input type="text" placeholder="Directory..." />
+                  </div>
+                </Form.Field>
+                <Button color="green" content="Save" />
+              </Form>
             }
             on="click"
             position="top right"
