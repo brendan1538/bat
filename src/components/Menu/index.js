@@ -1,24 +1,46 @@
 import React, { Component } from "react";
-import { Icon, Menu } from "semantic-ui-react";
+import { Icon, Menu, Modal } from "semantic-ui-react";
+
+import CreateBundleModal from "../CreateBundleModal";
 
 export default class MenuLabeledIcons extends Component {
-  state = { activeItem: "plus" };
+  constructor(props) {
+    super(props);
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+    this.state = {
+      activeItem: "plus",
+      modalOpen: false
+    };
+
+    this.handleModal = this.handleModal.bind(this);
+  }
+
+  handleModal = event => {
+    this.setState(prevState => ({ modalOpen: !prevState.modalOpen }));
+  };
 
   render() {
     const { activeItem } = this.state;
 
     return (
       <Menu icon="labeled">
-        <Menu.Item
-          name="plus"
-          active={activeItem === "plus"}
-          onClick={this.handleItemClick}
+        <Modal
+          closeIcon
+          open={this.state.modalOpen}
+          onClose={this.handleModal}
+          trigger={
+            <Menu.Item
+              name="plus"
+              active={activeItem === "plus"}
+              onClick={this.handleModal}
+            >
+              <Icon name="plus" color="green" />
+              Create New Bundle
+            </Menu.Item>
+          }
         >
-          <Icon name="plus" color="green" />
-          Create New Bundle
-        </Menu.Item>
+          <CreateBundleModal handleModal={this.handleModal} />
+        </Modal>
       </Menu>
     );
   }

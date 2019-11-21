@@ -1,0 +1,21 @@
+{
+  "name": "Test Bundle",
+  "image": "",
+  "description": "",
+  "actions": [
+    {
+      "type": "docker",
+      "name": "Docker netfirms",
+      "command": "docker-compose up",
+      "args": "netfirms",
+      "directory": "~/capvm"
+    },
+    {
+      "type": "git",
+      "name": "Checkout branch on Netfirms",
+      "command": "git checkout",
+      "args": "develop",
+      "directory": "~/capvm/coldstone/brands/netfirms"
+    }
+  ]
+}
