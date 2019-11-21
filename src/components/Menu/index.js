@@ -8,7 +8,6 @@ export default class MenuLabeledIcons extends Component {
     super(props);
 
     this.state = {
-      activeItem: "plus",
       modalOpen: false
     };
 
@@ -24,16 +23,15 @@ export default class MenuLabeledIcons extends Component {
 
     return (
       <Menu icon="labeled">
+        <Menu.Item>
+          <img style={{ width: "100px" }} src="logo.png" />
+        </Menu.Item>
         <Modal
           closeIcon
           open={this.state.modalOpen}
           onClose={this.handleModal}
           trigger={
-            <Menu.Item
-              name="plus"
-              active={activeItem === "plus"}
-              onClick={this.handleModal}
-            >
+            <Menu.Item name="plus" onClick={this.handleModal}>
               <Icon name="plus" color="green" />
               Create New Bundle
             </Menu.Item>
