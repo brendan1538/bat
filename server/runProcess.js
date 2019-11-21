@@ -8,10 +8,10 @@ const { mongodbCRUD } = require('./db_crud');
 module.exports = { 
   runProcess: function(bundle) {
     mongodbCRUD({}, 'read', function(allBundles) {
-      const selectedBundle = allBundles.find(obj => obj.hasOwnProperty(bundle));
+      const selectedBundle = allBundles.find(obj => obj.name === bundle);
       console.log(`*** Running ${bundle} bundle ***\n`);
-      selectedBundle[bundle].actions.forEach((action, index) => {
-        console.log(`Executing action ${index+1} of ${selectedBundle[bundle].actions.length}...`);
+      selectedBundle.actions.forEach((action, index) => {
+        console.log(`Executing action ${index+1} of ${selectedBundle.actions.length}...`);
         
         const workingDir = path.resolve(process.cwd(), action.directory.replace(/__USER__/, user)) || path.resolve(process.cwd());
         const { command, args } = action;
