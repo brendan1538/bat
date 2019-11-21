@@ -1,8 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
+import axios from "axios";
 
 import BundleGalleryItem from "../BundleGalleryItem/index";
 import defaultContent from "./default-content.json";
+
+const getBundles = bundle => {
+  return axios
+    .get(`http://localhost:1538/getBundles`)
+    .then(res => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch(err => console.error(err));
+};
 
 const styles = {
   container: {
@@ -20,18 +31,34 @@ const defaultProps = {
   content: defaultContent
 };
 
-const BundleImageGallery = props => {
-  const { bundles } = props.content;
-  return (
-    <section id="bundle-image-gallery" style={styles.container}>
-      <Card.Group centered>
-        {bundles.map((bundle, index) => (
-          <BundleGalleryItem content={{ ...bundle }} key={index} />
-        ))}
-      </Card.Group>
-    </section>
-  );
-};
+class BundleImageGallery extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      bundles: []
+    };
+  }
+  componentDidMount() {
+    getBundles().then(data => {
+      this.setState({
+        bundles: data
+      });
+    });
+  }
+  render() {
+    const { bundles } = this.state;
+    return (
+      <section id="bundle-image-gallery" style={styles.container}>
+        <Card.Group centered>
+          {bundles.map((bundle, index) => (
+            <BundleGalleryItem content={{ ...bundle }} key={index} />
+          ))}
+        </Card.Group>
+      </section>
+    );
+  }
+}
 
 BundleImageGallery.defaultProps = defaultProps;
 export default BundleImageGallery;

@@ -18,7 +18,7 @@ const runProcess = bundle => {
 };
 
 const BundleGalleryItem = ({ content }) => {
-  const { image, name, bundle } = content;
+  const { image, name, description } = content;
 
   return (
     <Card>
@@ -27,12 +27,12 @@ const BundleGalleryItem = ({ content }) => {
         wrapped
         ui={false}
         style={{ cursor: "pointer" }}
-        onClick={() => runProcess(bundle)}
+        onClick={() => runProcess(name)}
       />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
         <Card.Description>
-          Description
+          {description && description}
           <p>
             <a>Share Bundle</a>
           </p>
@@ -88,7 +88,7 @@ const BundleGalleryItem = ({ content }) => {
           <Button
             content="Run Bundle"
             primary
-            onClick={() => runProcess(bundle)}
+            onClick={() => runProcess(name)}
           />
         </div>
       </Card.Content>
