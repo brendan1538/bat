@@ -26,21 +26,12 @@ module.exports = {
                     });
                     break;
                 case "read":
-                    if (func) {
-                        console.log('func');
-                        dbo.collection("bundles").find(obj).toArray((err, result) => {
-                            if(err) throw err;
-                            db.close();
-                            return func(result);
-                        })
-                    } else {
-                        console.log('no func');
-                        dbo.collection("bundles").find(obj).toArray((err, result) => {
-                            if(err) throw err;
-                            db.close();
-                            return result;
-                        })
-                    }
+                    console.log('func');
+                    dbo.collection("bundles").find(obj).toArray((err, result) => {
+                        if(err) throw err;
+                        db.close();
+                        return func(result);
+                    })
                     break;
                 case "update":
                     break;
