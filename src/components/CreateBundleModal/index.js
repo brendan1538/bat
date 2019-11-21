@@ -3,6 +3,7 @@ import { Modal, Form, Button, Header } from "semantic-ui-react";
 import axios from "axios";
 
 import ActionInputs from "../ActionInputs";
+import { taggedTemplateExpression } from "@babel/types";
 
 const styles = {
   submit: {
@@ -48,15 +49,25 @@ class CreateBundleModal extends Component {
 
     if (value === "docker") {
       this.updateActionState(target.dataset.id, "command", "docker-compose up");
+      this.updateActionState(target.dataset.id, "args", "");
     }
     if (value === "git") {
       this.updateActionState(target.dataset.id, "command", "git checkout");
+      this.updateActionState(target.dataset.id, "args", "");
     }
     if (value === "url") {
       this.updateActionState(target.dataset.id, "command", "open ");
+      this.updateActionState(target.dataset.id, "args", "");
     }
     if (value === "sr") {
-      this.updateActionState(target.dataset.id, "command", "sr");
+      this.updateActionState(target.dataset.id, "command", "sr deploy");
+      this.updateActionState(
+        target.dataset.id,
+        "args",
+        `--property 45 --name "${
+          this.state.actions[target.dataset.id].name
+        }" --days 10`
+      );
     }
   }
 
