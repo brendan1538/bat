@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
 const { runProcess } = require('./runProcess');
+const redisClient = require('./redis-client');
 
 const { mongodbCRUD } = require('./db_crud');
 
@@ -20,15 +21,19 @@ let server = app.listen(PORT, () => {
   console.log(`Listing on port ${PORT}`);
 });
 
-app.get('/runBundle', cors(), (req, res) => {
-  runProcess(req.query.bundle);
+app.get('/runBundle', cors(), async (req, res) => {
+  // runProcess(req.query.bundle);
+  var redisData = await redisClient.getAsync("1", req.query);
+  console.log(redisData);
   res.status(200).send('completed');
 });
 
-app.get('/getBundles', cors(), async function(req, res) {
-  mongodbCRUD({}, 'read', function(bundles) {
-    res.status(200).send(bundles);
-  });
+app.get('/getBundles', cors(), async (req, res) => {
+  // mongodbCRUD({}, 'read', function(bundles) {
+  //   res.status(200).send(bundles);
+  // });
+  var data = await redisClient.setAsync(JSON.stringify(req.query));
+  return res.json(JSON.parse(data));
 });
 
 app.post('/createBundle', cors(), (req, res) => {

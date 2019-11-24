@@ -1,0 +1,21 @@
+redis:
+  image: redis
+  container_name: cache
+  expose:
+    - 6379
+
+app:
+  build: ./
+  volumes:
+    - ./:/app
+  ports:
+    - 1939:1939
+  environment:
+    - NODE_ENV=development
+    - PORT=1939
+  command:
+    sh -c 'init.sh'
+  links:
+    - redis
+  environment:
+    - REDIS_URL=redis://cache
