@@ -33,9 +33,6 @@ const BundleGalleryItem = ({ content }) => {
         <Card.Header>{name}</Card.Header>
         <Card.Description>
           {description && description}
-          <p>
-            <a>Share Bundle</a>
-          </p>
         </Card.Description>
       </Card.Content>
       <Card.Content extra>

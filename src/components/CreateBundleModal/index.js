@@ -3,7 +3,6 @@ import { Modal, Form, Button, Header } from "semantic-ui-react";
 import axios from "axios";
 
 import ActionInputs from "../ActionInputs";
-import { taggedTemplateExpression } from "@babel/types";
 
 const styles = {
   submit: {
@@ -15,7 +14,7 @@ const sendNewBundle = bundle => {
   console.log("Sending new Bundle to backend:", bundle);
 
   axios
-    .post(`http://localhost:1538/createBundle/`, bundle)
+    .post(`http://localhost:1538/createBundle/?team=domainFOS`, bundle)
     .then(res => console.log(res))
     .catch(err => console.error(err));
 };

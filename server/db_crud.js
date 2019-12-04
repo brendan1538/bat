@@ -26,7 +26,6 @@ module.exports = {
                     });
                     break;
                 case "read":
-                    console.log('func');
                     dbo.collection("bundles").find(obj).toArray((err, result) => {
                         if(err) throw err;
                         db.close();

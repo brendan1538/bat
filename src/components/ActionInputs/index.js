@@ -95,7 +95,7 @@ const ActionInputs = props => {
             </div>
           </Form.Field>
           <Form.Field>
-            <label htmlFor={directoryId}>Directory</label>
+            <label htmlFor={directoryId}>Directory<span style={{ fontSize: "10px", color: "#666666" }}> Add __USER__ in place of os user</span></label>
             <div className="ui fluid input">
               <input
                 type="text"
@@ -108,15 +108,15 @@ const ActionInputs = props => {
             </div>
           </Form.Field>
           <Form.Field>
-            <label>Remove Action</label>
             <Button
               type="button"
               data-id={index}
               icon
               negative
               onClick={handleDelete}
+              style={{ margin: "11% 0 0" }}
             >
-              Delete
+              <i area-hidden="true" class="close icon" />
             </Button>
           </Form.Field>
         </Form.Group>

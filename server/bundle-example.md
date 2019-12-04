@@ -1,19 +1,24 @@
 Bundle object format example:
 
-bundleName: {
-  image: {URL},
-  description: {STRING},
+teamName: {
+  category: "bundles",
+  name: "MyDomain",
+  image: "/mydomain.png",
+  description: "MyDomain default bundle",
   actions: [
     {
-      command: 'docker-compose up -d',
-      args: 'netfirms',
-      directory: '/Users/__USER__/capvm/coldstone'
+      type: "docker",
+      name: "Pull up docker container",
+      command: "docker-compose up",
+      args: "mydomain",
+      directory: "/Users/blaughlin/capvm/coldstone",
     },
     {
-      command: 'open',
-      args: 'http://127.0.0.1:10045/',
-      directory: '/Users/__USER__/capvm/coldstone'
-    },
-    ...
-  ],
-},
+      type: "git",
+      name: "Checkout git branch",
+      command: "git",
+      args: "mydomain",
+      directory: "/Users/blaughlin/capvm/coldstone",
+    }
+  ]
+}

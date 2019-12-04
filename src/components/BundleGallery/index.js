@@ -31,7 +31,7 @@ const defaultProps = {
   content: defaultContent
 };
 
-class BundleImageGallery extends Component {
+class BundleGallery extends Component {
   constructor(props) {
     super(props);
 
@@ -51,7 +51,7 @@ class BundleImageGallery extends Component {
     return (
       <section id="bundle-image-gallery" style={styles.container}>
         <Card.Group centered>
-          {bundles.map((bundle, index) => (
+          {bundles && bundles.map((bundle, index) => (
             <BundleGalleryItem content={{ ...bundle }} key={index} />
           ))}
         </Card.Group>
@@ -60,5 +60,5 @@ class BundleImageGallery extends Component {
   }
 }
 
-BundleImageGallery.defaultProps = defaultProps;
-export default BundleImageGallery;
+BundleGallery.defaultProps = defaultProps;
+export default BundleGallery;
